@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최선율수리논술 웹사이트 사용설명</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            overflow-x: hidden;
+        }
+        
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .slide {
+            background: white;
+            margin-bottom: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            min-height: 600px;
+            position: relative;
+        }
+        
+        .slide-header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        .slide-content {
+            padding: 40px;
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #374151;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: #6366f1;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .diamond {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            transform: rotate(45deg);
+            margin: 0 15px;
+            border-radius: 10px;
+            opacity: 0.9;
+        }
+        
+        .diamond:nth-child(2) {
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            opacity: 0.8;
+        }
+        
+        .diamond:nth-child(3) {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            opacity: 0.7;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #6366f1;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #10b981;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            color: #374151;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        
+        .step-content p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .step-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-top: 10px;
+        }
+        
+        .calendar-demo {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        .day-available {
+            background: #dcfce7;
+            color: #166534;
+            border: 2px solid #10b981;
+        }
+        
+        .day-full {
+            background: #fed7aa;
+            color: #9a3412;
+        }
+        
+        .day-selected {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .day-disabled {
+            background: #f3f4f6;
+            color: #9ca3af;
+        }
+        
+        .legend {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        
+        .legend-color {
+            width: 25px;
+            height: 25px;
+            border-radius: 6px;
+        }
+        
+        .notification-demo {
+            background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+            color: #991b1b;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 5px solid #dc2626;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 25px;
+        }
+        
+        .contact-item {
+            text-align: center;
+        }
+        
+        .contact-item h4 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .tips-list {
+            background: linear-gradient(135deg, #6ee7b7 0%, #10b981 100%);
+            color: #064e3b;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+        
+        .tips-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .tips-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            font-weight: 500;
+        }
+        
+        .tips-list li:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .slide-content {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-content {
+                text-align: left;
+            }
+            
+            .step-image {
+                max-width: 100%;
+                margin-top: 15px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .legend {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- 슬라이드 1: 타이틀 -->
+        <div class="slide" id="slide1">
+            <div class="slide-header">
+                <div class="slide-number">1 / 5</div>
+                <div class="logo-section">
+                    <img src="images/logo.png" alt="최선율수리논술 로고" style="max-width: 300px; height: auto; border-radius: 10px;">
+                </div>
+                <!-- <p class="subtitle">상담예약 사이트 사용설명서</p> -->
+            </div>
+            <div class="slide-content">
+                <div style="text-align: center; padding: 40px 0;">
+                    <h2 style="color: #6366f1; margin-bottom: 20px;">상담 예약 사이트 사용법</h2>
+                    <p style="font-size: 1.2rem; color: #6b7280; line-height: 1.6; margin-bottom: 20px;">
+                        원하시는 날짜와 시간을 선택해서 상담을 예약하세요.
+                    </p>
+                    <a href="https://www.choimelody.com/" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);">
+                        🌐 www.choimelody.com
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 2: 예약하는 방법 (통합) -->
+        <div class="slide" id="slide2">
+            <div class="slide-header">
+                <div class="slide-number">2 / 5</div>
+                <h1>사이트 소개</h1>
+            </div>
+            <div class="slide-content">
+                <div class="feature-grid" style="grid-template-columns: 1fr;">
+                    <div class="feature-card">
+                        <div class="feature-icon">📅</div>
+                        <h3>상담 예약</h3>
+                        <p>원하는 날짜와 시간을 선택하여 간편하게 상담을 예약할 수 있습니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🗓️</div>
+                        <h3>날짜별 상태 확인</h3>
+                        <p>상담 일정은 다음 같은 형식으로 등록되어 있습니다.</p>
+                        <div style="margin-top: 20px;">
+                            <div class="calendar-demo" style="background: #fff; padding: 20px; border-radius: 10px; border: 2px solid #e5e7eb;">
+                                <div class="calendar-grid">
+                                    <div class="calendar-day day-disabled">1</div>
+                                    <div class="calendar-day day-available">2</div>
+                                    <div class="calendar-day day-available">3</div>
+                                    <div class="calendar-day day-full">4</div>
+                                    <div class="calendar-day day-available">5</div>
+                                    <div class="calendar-day day-selected">6</div>
+                                    <div class="calendar-day day-disabled">7</div>
+                                    <div class="calendar-day day-available">8</div>
+                                    <div class="calendar-day day-available">9</div>
+                                    <div class="calendar-day day-available">10</div>
+                                    <div class="calendar-day day-full">11</div>
+                                    <div class="calendar-day day-available">12</div>
+                                    <div class="calendar-day day-available">13</div>
+                                    <div class="calendar-day day-disabled">14</div>
+                                </div>
+                                
+                                <div class="legend">
+                                    <div class="legend-item">
+                                        <div class="legend-color" style="background: #dcfce7; border: 2px solid #10b981;"></div>
+                                        <span>예약 가능</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color" style="background: #fed7aa;"></div>
+                                        <span>예약 마감</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color" style="background: #3b82f6;"></div>
+                                        <span>선택된 날짜</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color" style="background: #f3f4f6;"></div>
+                                        <span>예약 불가</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 3: 단계별 예약 가이드 -->
+        <div class="slide" id="slide3">
+            <div class="slide-header">
+                <div class="slide-number">3 / 5</div>
+                <h1>예약 방법</h1>
+            </div>
+            <div class="slide-content">
+                <div class="step-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>웹사이트 접속</h4>
+                            <p>www.choimelody.com 에 접속합니다.</p>
+                            <!-- <img src="images/p3_1_site.png" alt="웹사이트 접속 화면" class="step-image"> -->
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>날짜 선택</h4>
+                            <p>캘린더에서 연두색으로 표시된 예약 가능한 날짜를 클릭합니다.</p>
+                            <img src="images/p3_2_date.png" alt="날짜 선택 화면" class="step-image">
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>시간 선택</h4>
+                            <p>원하는 시간대를 선택합니다.</p>
+                            <p>수강생 전용 시간은 보라색으로 표시됩니다.</p>
+                            <img src="images/p3_3_time.png" alt="시간 선택 화면" class="step-image">
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>개인정보 수집이용 동의</h4>
+                            <p>개인정보 수집·이용 동의서를 확인하고 동의합니다.</p>
+                            <p>동의하지 않는 경우 사이트를 통한 상담 예약이 불가합니다.</p>
+                            <img src="images/p3_4_privacy0.png" alt="개인정보 동의 화면" class="step-image">
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>예약정보 입력</h4>
+                            <p>학생 이름, 참석자 정보 등을 입력합니다.</p>
+                            <p>비밀번호는 이후 예약 확인을 위한 6자리 숫자입니다.</p>
+                            <img src="images/p3_5_info.png" alt="예약정보 입력 화면" class="step-image">
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>이메일 본인 인증</h4>
+                            <p>"인증코드 발송" 버튼을 클릭하고 이메일로 수신한 6자리 인증코드를 입력합니다.</p>
+                            <img src="images/p3_6_email1.png" alt="이메일 인증 화면" class="step-image">
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <h4>예약 버튼 선택</h4>
+                            <p>"상담 예약하기" 버튼을 클릭하여 예약 신청을 완료합니다.</p>
+                            <img src="images/p3_7_booking.png" alt="예약 버튼 선택 화면" class="step-image">
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">8</div>
+                        <div class="step-content">
+                            <h4>예약 확인</h4>
+                            <p>예약이 완료되면 이메일로 승인 메일이 수신됩니다. 사이트에서도 확인 가능합니다.</p>
+                            <img src="images/p3_8_check1.png" alt="예약 확인 화면" class="step-image">
+                            <img src="images/p3_8_check2.png" alt="예약 확인 화면" class="step-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 4: 주의사항 -->
+        <div class="slide" id="slide4">
+            <div class="slide-header">
+                <div class="slide-number">4 / 5</div>
+                <h1>주의사항</h1>
+            </div>
+            <div class="slide-content">
+                <div class="notification-demo">
+                    <h3 style="color: #991b1b; margin-bottom: 15px;">📢 수강생 전용 일정 안내</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.6;">
+                        <strong>"보라색"</strong>으로 표시된 시간은 해당 요일에 수업을 듣는 학생을 위한 <strong>"수강생 전용"</strong> 시간입니다.<br>
+                        본인의 수강 요일이 아닌 요일에 해당 시간대로 예약하실 경우, 추후 예약이 취소될 수 있습니다.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 30px; text-align: center;">
+                    <h3 style="color: #6366f1; margin-bottom: 20px;">시간 선택 화면 예시</h3>
+                    <img src="images/p4_1_student.png" alt="예약 확인 화면" class="step-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 5: 연락처 -->
+        <div class="slide" id="slide5">
+            <div class="slide-header">
+                <div class="slide-number">5 / 5</div>
+                <h1>문의사항</h1>
+            </div>
+            <div class="slide-content">
+                <div class="contact-info">
+                    <div style="text-align: center;">
+                        <div class="contact-item">
+                            <h4>📞 연락처</h4>
+                            <p style="font-size: 1.2rem; line-height: 2;">
+                                전화: <strong>010-9131-4710</strong><br>
+                                이메일: <strong>choiek0724@naver.com</strong><br>
+                                인스타그램: <a href="https://www.instagram.com/math_is_a_melody?igsh=MWtodjA5Nm85Mm5uaw==" target="_blank" style="color: #22d3ee; text-decoration: none; font-weight: bold;">@math_is_a_melody</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">◀ 이전</button>
+        <button class="nav-btn" onclick="nextSlide()">다음 ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.style.display = 'none');
+            
+            if (n > totalSlides) currentSlide = 1;
+            if (n < 1) currentSlide = totalSlides;
+            
+            document.getElementById(`slide${currentSlide}`).style.display = 'block';
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // 키보드 내비게이션
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight') nextSlide();
+            if (event.key === 'ArrowLeft') previousSlide();
+        });
+
+        // 초기 슬라이드 표시
+        showSlide(1);
+    </script>
+</body>
+</html>
